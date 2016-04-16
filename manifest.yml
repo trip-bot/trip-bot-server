@@ -1,0 +1,7 @@
+applications:
+- services:
+  - personality-insights
+  name: AskLucia
+  command: node ./bin/www
+  path: .
+  memory: 256M
