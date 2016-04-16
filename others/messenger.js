@@ -114,11 +114,6 @@ function suggestSpots(sender, spots) {
                 type: "postback",
                 title: "Disneyland, Tokyo",
                 payload: "PAYLOAD_SELECT_3"
-              },
-              {
-                type: "postback",
-                title: "Disneyland, Tokyo",
-                payload: "PAYLOAD_SELECT_4"
               }
             ]
           }
