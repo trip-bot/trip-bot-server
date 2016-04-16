@@ -14,10 +14,11 @@
     "fb": "^1.0.2",
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
+    "node-fetch": "^1.5.1",
     "node-wit": "^3.2.0",
-    "request": "^2.71.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.0",
+    "request": "^2.71.0",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
