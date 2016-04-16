@@ -24,11 +24,14 @@ router.post("/webhook/", (req, res) => {
       const text = `${event.message.text.substring(0, 200)}`;
       setTimeout(() => {
         if (event.message.text === "Spots") {
-          messenger.sendSpotSuggestions(sender);
+          messenger.suggestSpots(sender);
         } else {
-          messenger.echo(sender, text);
+          messenger.send(sender, text);
         }
       }, Math.max(0.5, text.length * 15));
+    } else if (event.postback) {
+      const text = JSON.stringify(event.postback);
+      messenger.send(sender, text);
     }
   });
   res.sendStatus(200);
