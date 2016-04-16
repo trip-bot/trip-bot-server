@@ -7,10 +7,10 @@ function analysisPersonality(content, res) {
 }
 
 router.get("/me", (req, res) => {
-  FB.api("/me", (response) => {
-    console.log(response);
-    FB.api(`${response.id}/posts`, (resp) => {
-      const content = resp.data.map((val) => val.message).join();
+  FB.api("/me", (fbResponse) => {
+    console.log(fbResponse);
+    FB.api(`${fbResponse.id}/posts`, (postRes) => {
+      const content = postRes.data.map((val) => val.message).join(", ");
       analysisPersonality(content, res);
     });
   });
