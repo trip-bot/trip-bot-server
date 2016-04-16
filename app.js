@@ -26,8 +26,8 @@ app.set("view engine", "jade");
 
 const config = new Config();
 passport.use(new Strategy({
-    clientID: "1688582574742376",
-    clientSecret: "cb9f3bdff27218a9ff421c0d41cb3c35",
+    clientID: "888460181265335",
+    clientSecret: "ee56042bfc0e96e38ed248b2a99bdc61",
     callbackURL: `${config.host}/auth/facebook/callback`
   },
   (accessToken, refreshToken, profile, cb) => {
