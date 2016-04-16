@@ -25,10 +25,6 @@ function analysisPersonality(content, res) {
     });
 }
 
-function analysisPersonality(content, res) {
-  res.send(content);
-}
-
 router.get("/me", (req, res) => {
   FB.api("/me", (response) => {
     console.log(response);
