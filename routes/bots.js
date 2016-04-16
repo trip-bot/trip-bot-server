@@ -38,8 +38,8 @@ router.get("/webhook", (req, res) => {
 });
 
 router.post("/webhook/", (req, res) => {
-  console.log(req.body);
-  req.body.entry[0].messagings.forEach(event => {
+  console.log(req.body.entry[0].messaging);
+  req.body.entry[0].messaging.forEach(event => {
     const sender = event.sender.id;
     if (event.message && event.message.text) {
       const text = event.message.text;
