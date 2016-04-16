@@ -1,0 +1,83 @@
+{
+  "rules": {
+    "no-console": 0,
+    "no-param-reassign": 0,
+    "indent": [
+      0,
+      "tab",
+      { "SwitchCase": 1 }
+    ],
+    "quotes": [
+      2,
+      "double"
+    ],
+    "linebreak-style": [
+      2,
+      "unix"
+    ],
+    "array-bracket-spacing": [
+      2,
+      "always"
+    ],
+    "semi": [
+      2,
+      "always"
+    ],
+    "comma-dangle": [
+      2,
+      "never"
+    ],
+    "func-names": 0,
+    "new-cap": [
+      2,
+      { "capIsNew": false }
+    ],
+    "consistent-return": 0,
+    "react/jsx-no-bind": 0,
+    "react/sort-comp": [
+      0,
+      {
+        "order": [
+          "lifecycle",
+          "render",
+          "everything-else"
+        ],
+        "groups": {
+          "lifecycle": [
+            "propTypes",
+            "contextTypes",
+            "childContextTypes",
+            "mixins",
+            "statics",
+            "getStores",
+            "getPropsFromStores",
+            "defaultProps",
+            "getDefaultProps",
+            "state",
+            "getInitialState",
+            "getChildContext",
+            "constructor",
+            "componentWillMount",
+            "componentDidMount",
+            "componentWillReceiveProps",
+            "shouldComponentUpdate",
+            "componentWillUpdate",
+            "componentDidUpdate",
+            "componentWillUnmount"
+          ]
+        }
+      }
+    ]
+  },
+  "env": {
+    "commonjs": true,
+    "amd": true,
+    "node": true,
+    "es6": true
+  },
+  "extends": "airbnb",
+  "ecmaFeatures": {
+    "jsx": true,
+    "experimentalObjectRestSpread": true
+  }
+}
