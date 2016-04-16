@@ -5,9 +5,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var passport = require('passport');
+var Strategy = require('passport-facebook').Strategy;
+var FB = require('fb');
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var bots = require('./routes/bots')
+var bots = require('./routes/bots');
+var facebook = require('./routes/facebook');
 
 var app = express();
 
@@ -17,6 +22,33 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+passport.use(new Strategy({
+    clientID: '1688582574742376',
+    clientSecret: 'cb9f3bdff27218a9ff421c0d41cb3c35',
+    callbackURL: 'http://localhost:3000/auth/facebook/callback'
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    // In this example, the user's Facebook profile is supplied as the user
+    // record.  In a production-quality application, the Facebook profile should
+    // be associated with a user record in the application's database, which
+    // allows for account linking and authentication with other identity
+    // providers.
+    FB.setAccessToken(accessToken);
+    return cb(null, profile);
+  }));
+
+passport.serializeUser(function(user, cb) {
+    cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+    cb(null, obj);
+});
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,7 +57,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/bots', bots)
+app.use('/bots', bots);
+app.use('/facebook', facebook);
+
+app.get('/auth/facebook',
+  passport.authenticate('facebook'));
+
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login/facebook' }),
+  function(req, res) {
+    res.redirect('/facebook/me');
+  });
+// app.use('/facebook', facebook);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
