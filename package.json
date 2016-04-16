@@ -1,5 +1,5 @@
 {
-  "name": "travel",
+  "name": "Lucia",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -15,5 +15,11 @@
     "morgan": "~1.6.1",
     "node-wit": "^3.2.0",
     "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^2.8.0",
+    "eslint-config-airbnb": "^7.0.0",
+    "eslint-plugin-jsx-a11y": "^0.6.2",
+    "eslint-plugin-react": "^4.3.0"
   }
 }
