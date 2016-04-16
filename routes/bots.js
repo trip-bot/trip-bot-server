@@ -42,8 +42,10 @@ router.post("/webhook/", (req, res) => {
   req.body.entry[0].messaging.forEach(event => {
     const sender = event.sender.id;
     if (event.message && event.message.text) {
-      const text = event.message.text;
-      sendTextMessage(sender, `${text.substring(0, 200)}`);
+      const text = `${event.message.text.substring(0, 200)}`;
+      setTimeout(() => {
+        sendTextMessage(sender, text);
+      }, Math.max(0.5, text.length * 15));
     }
   });
   res.sendStatus(200);
