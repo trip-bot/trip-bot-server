@@ -30,8 +30,8 @@ router.post("/webhook/", (req, res) => {
         }
       }, Math.max(0.5, text.length * 15));
     } else if (event.postback) {
-      const text = JSON.stringify(event.postback);
-      messenger.send(sender, text);
+      const text2 = JSON.stringify(event.postback);
+      messenger.send(sender, text2);
     }
   });
   res.sendStatus(200);
