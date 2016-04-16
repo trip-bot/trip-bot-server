@@ -48,12 +48,29 @@ function sendSpotSuggestions(sender, spots) {
           {
             title: "Motor Sport Japan Festival 2016",
             subtitle: "$$$",
-            image_url: "http://www.tokyo-top-guide.com/wp-content/uploads/2012/09/Tokyo-Disney-2.jpg",
+            image_url: "https://www.gotokyo.org/tc/kanko/koto/event/images/motor_fes_main_001.jpg",
             buttons: [
               {
                 type: "postback",
                 title: "https://www.messenger.com",
                 payload: "PAYLOAD_ITEM_2"
+              },
+              {
+                type: "web_url",
+                title: "Location and Review(s)",
+                url: "https://www.google.com.hk/maps/place/odaiba+ultra+park/@35.6236356,139.7645212,14.75z/data=!4m12!1m9!4m8!1m0!1m6!1m2!1s0x601889f90a68c61f:0xe1cb4141058d0b9d!2zSmFwYW4sIOOAkjEzNS0wMDY0IFRva3lvLCBLb3RvIG9kYWliYSB1bHRyYSBwYXJrIOmdkua1t--8keS4geebru-8keKIku-8ku-8kA!2m2!1d139.7765043!2d35.6235046!3m1!1s0x601889f90a68c61f:0xe1cb4141058d0b9d"
+              }
+            ]
+          },
+          {
+            title: "Disneyland",
+            subtitle: "$$$",
+            image_url: "http://www.tokyo-top-guide.com/wp-content/uploads/2012/09/Tokyo-Disney-2.jpg",
+            buttons: [
+              {
+                type: "postback",
+                title: "https://www.messenger.com",
+                payload: "PAYLOAD_ITEM_3"
               },
               {
                 type: "web_url",
