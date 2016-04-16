@@ -2,7 +2,7 @@ const express = require("express");
 const request = require("request");
 const router = express.Router();
 
-const token = "CAAMoDMGAW7cBAC7uZBx3Nfuh8DXoiZC2gJ6T6gyiDlUSRs3FzFaNx8Q2T0ZCrr7ZAL8TlsAc1gxlrZBzi6xcwvxmPIrngvQ4CZCvW4OF5gUu0qHAWoAPtkbvQRWvmt7fE6kWuqOojDcMq5cvBaItigFuNbnVAnA4UguJCVSSih4GZApP8SosGMDjApc30qdNlp1PaygxjCQqAZDZD";
+const token = "CAAMoDMGAW7cBAKGjBYbW2vUKq6uE515ZBFuJ5TvWILBbDyl7sC6mT4vIEmHIZCDOjhNYABqPa5O3nI9fiDxcDL40K0sXIWHf0ZBsBZBDHlpF4dL5MvZCSFy1mY4sGqoAWKzKsxDpldOH87cgtafrYgBUvLbCzHIyGtaZCWvZC53yaqxXS3sIhXOwdk08mzuHgLw7u9CjS53uAZDZD";
 
 function sendTextMessage(sender, text) {
   const messageData = { text };
@@ -43,7 +43,7 @@ router.post("/webhook/", (req, res) => {
     const sender = event.sender.id;
     if (event.message && event.message.text) {
       const text = event.message.text;
-      sendTextMessage(sender, `Text received, echo: ${text.substring(0, 200)}`);
+      sendTextMessage(sender, `${text.substring(0, 200)}`);
     }
   });
   res.sendStatus(200);
