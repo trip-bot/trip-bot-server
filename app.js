@@ -9,10 +9,8 @@ const passport = require("passport");
 const Strategy = require("passport-facebook").Strategy;
 const FB = require("fb");
 
-<<<<<<< 4eaa31a56180a17b636202aaad0278d1e8adae6e
 const Config = require("./config");
-=======
->>>>>>> added master code
+
 const routes = require("./routes/index");
 const users = require("./routes/users");
 const bots = require("./routes/bots");
