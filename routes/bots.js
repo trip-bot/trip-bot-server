@@ -41,7 +41,7 @@ const actions = {
         url: "https://graph.facebook.com/v2.6/me/messages",
         qs: { access_token: token },
         method: "POST",
-        json: { recipient: { id: recipientId }, message: messenger.configHorizontalView(locationStore.get("locations")[0].child) }
+        json: { recipient: { id: recipientId }, message: messenger.configHorizontalView(require("../locations").locations[0].child) }
       }, err => {
         if (err) {
           console.log("An error occurred while forwarding the response to", recipientId, ":", err);
