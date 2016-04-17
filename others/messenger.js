@@ -21,11 +21,8 @@ function send(sender, text) {
   });
 }
 
-function suggestSpots(sender, spots) {
-  const messageData1 = {
-    text: "It would be great if you could enjoy the summer in a nice themepark! Which one do u like?"
-  };
-  const messageData2 = {
+function configHorizontalView(spots) {
+  return {
     attachment: {
       type: "template",
       payload: {
@@ -107,37 +104,6 @@ function suggestSpots(sender, spots) {
       }
     }
   };
-  request({
-    url: "https://graph.facebook.com/v2.6/me/messages",
-    qs: { access_token: token },
-    method: "POST",
-    json: {
-      recipient: { id: sender },
-      message: messageData1
-    }
-  }, (error1, response1) => {
-    if (error1) {
-      console.log("Error sending messages: ", error1);
-    } else if (response1.body.error) {
-      console.log("Error: ", response1.body.error);
-    } else {
-      request({
-        url: "https://graph.facebook.com/v2.6/me/messages",
-        qs: { access_token: token },
-        method: "POST",
-        json: {
-          recipient: { id: sender },
-          message: messageData2
-        }
-      }, (error2, response2) => {
-        if (error2) {
-          console.log("Error sending messages: ", error2);
-        } else if (response2.body.error) {
-          console.log("Error: ", response2.body.error);
-        }
-      });
-    }
-  });
 }
 
-module.exports = { send, suggestSpots };
+module.exports = { send, configHorizontalView };

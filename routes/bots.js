@@ -33,11 +33,23 @@ const actions = {
   merge: (sessionId, context, entities, message, cb) => { cb(context); },
   error: (sessionId, context, error) => { console.log(error.message); },
   getResult: (sessionId, context, cb) => {
-    console.log("getResult");
-    cb(context);
-  },
-  parseChoice: (sessionId, context, cb) => {
-    console.log("parseChoice");
+    const recipientId = sessions[sessionId].fbId;
+    if (recipientId) {
+      request({
+        url: "https://graph.facebook.com/v2.6/me/messages",
+        qs: { access_token: token },
+        method: "POST",
+        json: { recipient: { id: recipientId }, message: { text: "" } }
+      }, err => {
+        if (err) {
+          console.log("An error occurred while forwarding the response to", recipientId, ":", err);
+        }
+        cb();
+      });
+    } else {
+      console.log("Oops! Couldn't find user for session:", sessionId);
+      cb();
+    }
     cb(context);
   }
 };
