@@ -12,6 +12,7 @@ const sessions = new Map();
 const actions = {
   say: (sessionId, context, message, cb) => {
     const recipientId = sessions[sessionId].fbId;
+    console.log(message);
     if (recipientId) {
       request({
         url: "https://graph.facebook.com/v2.6/me/messages",
