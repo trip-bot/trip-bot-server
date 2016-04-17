@@ -4,29 +4,6 @@ const messenger = require("../others/messenger");
 const Wit = require("node-wit").Wit;
 const router = express.Router();
 
-if (!Array.prototype.find) {
-  Array.prototype.find = function(predicate) {
-    if (this === null) {
-      throw new TypeError("Array.prototype.find called on null or undefined");
-    }
-    if (typeof predicate !== "function") {
-      throw new TypeError("predicate must be a function");
-    }
-    const list = Object(this);
-    const length = list.length >>> 0;
-    const thisArg = arguments[1];
-    let value;
-
-    for (let i = 0; i < length; ++i) {
-      value = list[i];
-      if (predicate.call(thisArg, value, i, list)) {
-        return value;
-      }
-    }
-    return undefined;
-  };
-}
-
 const token = "CAAMoDMGAW7cBAKGjBYbW2vUKq6uE515ZBFuJ5TvWILBbDyl7sC6mT4vIEmHIZCDOjhNYABqPa5O3nI9fiDxcDL40K0sXIWHf0ZBsBZBDHlpF4dL5MvZCSFy1mY4sGqoAWKzKsxDpldOH87cgtafrYgBUvLbCzHIyGtaZCWvZC53yaqxXS3sIhXOwdk08mzuHgLw7u9CjS53uAZDZD";
 const sessions = new Map();
 
@@ -90,7 +67,8 @@ router.get("/webhook", (req, res) => {
 
 const findOrCreateSession = fbId => {
   // Let's see if we already have a session for the user fbId
-  const result = sessions.values.find(v => v.fbId === fbId);
+  let result = undefined;
+  for (const [ key, value ] of sessions) if (value === fbId) result = key;
   if (typeof result === "undefined") {
     // No session found for user fbId, let's create a new one
     const sessionId = new Date().toISOString();
