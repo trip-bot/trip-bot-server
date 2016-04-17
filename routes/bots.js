@@ -119,7 +119,9 @@ router.post("/webhook/", (req, res) => {
           }
         }
       );
-    } else if (event.postback && event.postback.payload) {
+      return;
+    }
+    if (event.postback && event.postback.payload) {
       wit.runActions(sessionId, event.postback.payload, sessions[sessionId].context,
         (error, context) => {
           if (error) {
