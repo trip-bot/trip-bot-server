@@ -30,7 +30,7 @@ function configHorizontalView(spots) {
         elements: spots.map(spot => {
           return {
             title: spot.name,
-            subtitle: new Array(Math.round(spot.rate)).fill(null).map(() => "★").concat(new Array(5 - Math.round(spot.rate).fill(null).map(() => "☆"))),
+            subtitle: new Array(Math.round(spot.rate)).fill(null).map(() => "★").join() + new Array(5 - Math.round(spot.rate)).fill(null).map(() => "☆").join(),
             image_url: spot.imageUrl,
             buttons: [
               {
