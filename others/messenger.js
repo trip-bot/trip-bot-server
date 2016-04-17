@@ -22,7 +22,7 @@ function send(sender, text) {
 }
 
 function configHorizontalView(spots) {
-  return {
+  const t = {
     attachment: {
       type: "template",
       payload: {
@@ -49,6 +49,8 @@ function configHorizontalView(spots) {
       }
     }
   };
+  console.log(t);
+  return t;
 }
 
 module.exports = { send, configHorizontalView };
