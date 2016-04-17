@@ -106,7 +106,29 @@ module.exports = {
     },
     {
       "tag": "excitement",
-      "child": []
+      "child": [
+        {
+          "name": "Tokyo Sky Diving Club",
+          "googleMapUrl": "https://www.google.com/maps/place/東京スカイダイビングクラブ/@35.9777192,139.511426,17z/data=!3m1!4b1!4m2!3m1!1s0x6018d03769da8af5:0x765edc304544f7da",
+          "imageUrl": "http://www2s.biglobe.ne.jp/~TSDC/sd3.jpg",
+          "rate": "4.3",
+          "price": ""
+        },
+        {
+          "name": "Tokyo Snow Club",
+          "googleMapUrl": "https://www.google.com/maps/place/Tokyo+Snow+Club/@35.691229,139.6958825,17z/data=!3m1!4b1!4m2!3m1!1s0x60188cd43b591f49:0x3209c8ad038e6024",
+          "imageUrl": "https://pbs.twimg.com/media/CX6exFnWAAQ7n2T.jpg",
+          "rate": "4.3",
+          "price": ""
+        },
+        {
+          "name": "Your Archery Life",
+          "googleMapUrl": "https://www.google.com/maps/place/渋谷アーチェリー+-Your+Archery+Life-/@35.6880323,139.6880456,15z/data=!4m5!1m2!2m1!1sarchery+toyko!3m1!1s0x60188cd17873326d:0x7176c4baf033afd",
+          "imageUrl": "http://static.neatorama.com/images/2014-06/archery-tag.jpg",
+          "rate": "4.3",
+          "price": ""
+        }
+      ]
     }
   ]
 }

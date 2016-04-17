@@ -110,36 +110,35 @@
 
   function analysisPersonality(cb) {
     // console.log(`analysising...length: ${content.split(" ").length}`);
-    // personalityInsights.profile({ text: content },
-    //   (err, profile) => {
-    //     if (err) {
-    //       console.log(err);
-    //       res.send(err);
-    //     } else {
-    //       console.log("done");
-    //
-    //     }
-    //   });
-      const duplicateTags = result.tree
-                  .children[0]
-                  .children[0].children
-                  .map((val) => val.children)
-                  .flatten()
-                  .sort(isMajorPersonality)
-                  .map((val) => mapToTag(val.name));
-      const tags = uniq(duplicateTags).slice(0, 3);
-      const locs = [];
-      const others = [];
-      locations.locations.forEach((loc) => {
-        tags.forEach((tag) => {
-          if (loc.tag === tag) {
-            locs.push(loc);
-          } else {
-            others.push(loc);
-          }
-        });
+    personalityInsights.profile({ text: content },
+      (err, profile) => {
+        if (err) {
+          console.log(err);
+          cb(err);
+        } else {
+          console.log("done");
+          const duplicateTags = profile.tree
+                      .children[0]
+                      .children[0].children
+                      .map((val) => val.children)
+                      .flatten()
+                      .sort(isMajorPersonality)
+                      .map((val) => mapToTag(val.name));
+          const tags = uniq(duplicateTags).slice(0, 3);
+          const locs = [];
+          const others = [];
+          locations.locations.forEach((loc) => {
+            tags.forEach((tag) => {
+              if (loc.tag === tag) {
+                locs.push(loc);
+              } else {
+                others.push(loc);
+              }
+            });
+          });
+          cb(locs, others);
+        }
       });
-      cb(locs);
   }
 
   function getMoreContentIfNeeded(next, cbFinal, cb) {
@@ -150,7 +149,7 @@
             .end((err, nextRes) => {
               const json = JSON.parse(nextRes.text);
               content += json.data.map((val) => val.message).join(" ");
-              if (content.split(" ").length < 1000) {
+              if (content.split(" ").length < 4000) {
                 getMoreContentIfNeeded(json.paging.next, cbFinal, cb);
               } else {
                 cb(cbFinal);
@@ -165,7 +164,7 @@
         FB.api(`${response.id}/posts`, (resp) => {
           console.log(resp);
           content = resp.data.map((val) => val.message).join();
-          if (content.split(" ").length < 1000) {
+          if (content.split(" ").length < 4000) {
               getMoreContentIfNeeded(resp.paging.next, cb, analysisPersonality);
           } else {
             analysisPersonality(cb);
