@@ -4,7 +4,6 @@ const request = require("request");
 const express = require("express");
 const messenger = require("../others/messenger");
 const Wit = require("node-wit").Wit;
-const locationStore = require("../others/locationsStore");
 const router = express.Router();
 
 const token = "CAAMoDMGAW7cBAKGjBYbW2vUKq6uE515ZBFuJ5TvWILBbDyl7sC6mT4vIEmHIZCDOjhNYABqPa5O3nI9fiDxcDL40K0sXIWHf0ZBsBZBDHlpF4dL5MvZCSFy1mY4sGqoAWKzKsxDpldOH87cgtafrYgBUvLbCzHIyGtaZCWvZC53yaqxXS3sIhXOwdk08mzuHgLw7u9CjS53uAZDZD";

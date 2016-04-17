@@ -3,8 +3,6 @@ const path = require("path");
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-const locationsStore = require("./others/locationsStore");
-const locationService = require("./services/locationService");
 
 const passport = require("passport");
 const Strategy = require("passport-facebook").Strategy;
@@ -70,10 +68,6 @@ app.get("/auth/facebook",
 app.get("/auth/facebook/callback",
   passport.authenticate("facebook", { failureRedirect: "/auth/facebook" }),
   (req, res) => {
-    locationService.getLocation((locations, other) => {
-      locationsStore.set("locations", locations);
-      locationsStore.set("other", other);
-    });
     res.redirect("/users");
   });
 // app.use("/facebook", facebook);
