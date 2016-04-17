@@ -30,7 +30,15 @@ const actions = {
     }
   },
   merge: (sessionId, context, entities, message, cb) => { cb(context); },
-  error: (sessionId, context, error) => { console.log(error.message); }
+  error: (sessionId, context, error) => { console.log(error.message); },
+  getResult: (sessionId, context, cb) => {
+    console.log("getResult");
+    cb(context);
+  },
+  parseChoice: (sessionId, context, cb) => {
+    console.log("parseChoice");
+    cb(context);
+  }
 };
 
 const wit = new Wit("73TTKW23XFN6B4ZBFVR4XME7JN5NO62L", actions);
