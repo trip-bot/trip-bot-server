@@ -1,3 +1,5 @@
+"use strict";
+
 const request = require("request");
 const express = require("express");
 const messenger = require("../others/messenger");
@@ -67,7 +69,7 @@ router.get("/webhook", (req, res) => {
 
 const findOrCreateSession = fbId => {
   // Let's see if we already have a session for the user fbId
-  let result = undefined;
+  let result;
   for (const [ key, value ] of sessions) if (value === fbId) result = key;
   if (typeof result === "undefined") {
     // No session found for user fbId, let's create a new one
