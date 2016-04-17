@@ -18,7 +18,7 @@ const actions = {
         url: "https://graph.facebook.com/v2.6/me/messages",
         qs: { access_token: token },
         method: "POST",
-        json: { recipient: { id: recipientId }, message }
+        json: { recipient: { id: recipientId }, message: { text: message } }
       }, err => {
         if (err) {
           console.log("An error occurred while forwarding the response to", recipientId, ":", err);
@@ -51,7 +51,7 @@ function saveItinerary(sessionId, message) {
       url: "https://graph.facebook.com/v2.6/me/messages",
       qs: { access_token: token },
       method: "POST",
-      json: { recipient: { id: recipientId }, message }
+      json: { recipient: { id: recipientId }, message: { text: message } }
     }, (error2, response2) => {
       if (error2) {
         console.log("Error sending messages: ", error2);
