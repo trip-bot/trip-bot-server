@@ -4,8 +4,8 @@ const locationService = require("../services/locationService");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  locationService.getLocation((tags) => {
-    res.send(tags);
+  locationService.getLocation((locations) => {
+    res.send(locations);
   });
 });
 

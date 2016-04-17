@@ -6,7 +6,8 @@
   const watson = require("watson-developer-cloud");
   const request = require("superagent");
   const config = new Conf();
-  const result = require("../result.js");
+  const result = require("../result");
+  const locations = require("../locations");
   var content = null;
 
   const personalityInsights = watson.personality_insights({
@@ -127,7 +128,15 @@
                   .sort(isMajorPersonality)
                   .map((val) => mapToTag(val.name));
       const tags = uniq(duplicateTags).slice(0, 3);
-      cb(tags);
+      const locs = [];
+      locations.locations.forEach((loc) => {
+        tags.forEach((tag) => {
+          if (loc.tag === tag) {
+            locs.push(loc);
+          }
+        });
+      });
+      cb(locs);
   }
 
   function getMoreContentIfNeeded(next, cbFinal, cb) {
