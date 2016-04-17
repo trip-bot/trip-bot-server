@@ -65,13 +65,13 @@ router.get("/webhook", (req, res) => {
   res.send("Error, wrong token");
 });
 
-const findOrCreateSession = myFbId => {
+const findOrCreateSession = fbId => {
   // Let's see if we already have a session for the user fbId
-  const result = sessions.values.find(({ fbId }) => fbId === myFbId);
+  const result = sessions.values.find(v => v.fbId === fbId);
   if (typeof result === "undefined") {
     // No session found for user fbId, let's create a new one
     const sessionId = new Date().toISOString();
-    sessions[sessionId] = { fbId: myFbId, context: {} };
+    sessions[sessionId] = { fbId, context: {} };
     return sessionId;
   }
   return result;
