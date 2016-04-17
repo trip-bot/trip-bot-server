@@ -10,6 +10,7 @@ const Strategy = require("passport-facebook").Strategy;
 const FB = require("fb");
 
 const Config = require("./config");
+
 const routes = require("./routes/index");
 const users = require("./routes/users");
 const bots = require("./routes/bots");
@@ -62,13 +63,13 @@ app.use("/users", users);
 app.use("/bots", bots);
 app.use("/facebook", facebook);
 
-
-app.get("/auth/facebook", passport.authenticate("facebook"));
+app.get("/auth/facebook",
+  passport.authenticate("facebook", { scope: [ "email", "user_posts" ] }));
 
 app.get("/auth/facebook/callback",
-  passport.authenticate("facebook", { failureRedirect: "/login/facebook" }),
+  passport.authenticate("facebook", { failureRedirect: "/auth/facebook" }),
   (req, res) => {
-    res.redirect("/facebook/me");
+    res.redirect("/users");
   });
 // app.use("/facebook", facebook);
 
