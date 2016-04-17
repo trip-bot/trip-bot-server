@@ -70,7 +70,7 @@ router.get("/webhook", (req, res) => {
 const findOrCreateSession = fbId => {
   // Let's see if we already have a session for the user fbId
   let result;
-  for (const [ key, value ] of sessions) if (value === fbId) result = key;
+  for (const obj of sessions) if (obj.value === fbId) result = obj.key;
   if (typeof result === "undefined") {
     // No session found for user fbId, let's create a new one
     const sessionId = new Date().toISOString();
