@@ -129,10 +129,13 @@
                   .map((val) => mapToTag(val.name));
       const tags = uniq(duplicateTags).slice(0, 3);
       const locs = [];
+      const others = [];
       locations.locations.forEach((loc) => {
         tags.forEach((tag) => {
           if (loc.tag === tag) {
             locs.push(loc);
+          } else {
+            others.push(loc);
           }
         });
       });
