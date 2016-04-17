@@ -1,3 +1,4 @@
+require("array.prototype.find");
 const request = require("request");
 const express = require("express");
 const messenger = require("../others/messenger");
