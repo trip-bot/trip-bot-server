@@ -9,6 +9,7 @@ const router = express.Router();
 
 const token = "CAAMoDMGAW7cBAKGjBYbW2vUKq6uE515ZBFuJ5TvWILBbDyl7sC6mT4vIEmHIZCDOjhNYABqPa5O3nI9fiDxcDL40K0sXIWHf0ZBsBZBDHlpF4dL5MvZCSFy1mY4sGqoAWKzKsxDpldOH87cgtafrYgBUvLbCzHIyGtaZCWvZC53yaqxXS3sIhXOwdk08mzuHgLw7u9CjS53uAZDZD";
 const sessions = new Map();
+let stage = 0;
 
 const actions = {
   say: (sessionId, context, message, cb) => {
@@ -41,7 +42,7 @@ const actions = {
         url: "https://graph.facebook.com/v2.6/me/messages",
         qs: { access_token: token },
         method: "POST",
-        json: { recipient: { id: recipientId }, message: messenger.configHorizontalView(require("../locations").locations[0].child) }
+        json: { recipient: { id: recipientId }, message: messenger.configHorizontalView(++stage, require("../locations").locations[0].child) }
       }, err => {
         if (err) {
           console.log("An error occurred while forwarding the response to", recipientId, ":", err);
@@ -118,17 +119,17 @@ router.post("/webhook/", (req, res) => {
           }
         }
       );
-      // const text = `${event.message.text.substring(0, 200)}`;
-      // setTimeout(() => {
-      //   if (event.message.text === "Spots") {
-      //     messenger.suggestSpots(sender);
-      //   } else {
-      //     messenger.send(sender, text);
-      //   }
-      // }, Math.max(0.5, text.length * 15));
-    } else if (event.postback) {
-      const text2 = JSON.stringify(event.postback);
-      messenger.send(sender, text2);
+    } else if (event.postback && event.postback.payload) {
+      wit.runActions(sessionId, event.postback.payload, sessions[sessionId].context,
+        (error, context) => {
+          if (error) {
+            console.log("Oops! Got an error from Wit:", error);
+          } else {
+            console.log("Waiting for futher messages.");
+            sessions[sessionId].context = context;
+          }
+        }
+      );
     }
   });
   res.sendStatus(200);

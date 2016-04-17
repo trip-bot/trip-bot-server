@@ -21,16 +21,16 @@ function send(sender, text) {
   });
 }
 
-function configHorizontalView(spots) {
+function configHorizontalView(index, spots) {
   const t = {
     attachment: {
       type: "template",
       payload: {
         template_type: "generic",
-        elements: spots.map(spot => {
+        elements: spots.map((spot, i) => {
           return {
             title: spot.name,
-            subtitle: new Array(Math.round(spot.rate)).fill(null).map(() => "★").join() + new Array(5 - Math.round(spot.rate)).fill(null).map(() => "☆").join(),
+            subtitle: new Array(Math.round(spot.rate)).fill(null).map(() => "★").join("") + new Array(5 - Math.round(spot.rate)).fill(null).map(() => "☆").join(""),
             image_url: spot.imageUrl,
             buttons: [
               {
@@ -41,7 +41,7 @@ function configHorizontalView(spots) {
               {
                 type: "postback",
                 title: "Pick",
-                payload: "PAYLOAD_ITEM_1"
+                payload: "Finish question " + index
               }
             ]
           };
