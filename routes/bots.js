@@ -3,8 +3,8 @@
 const request = require("request");
 const express = require("express");
 const messenger = require("../others/messenger");
-const locationService = require("../services/locationService");
 const Wit = require("node-wit").Wit;
+const locationStore = require("../others/locationsStore");
 const router = express.Router();
 
 const token = "CAAMoDMGAW7cBAKGjBYbW2vUKq6uE515ZBFuJ5TvWILBbDyl7sC6mT4vIEmHIZCDOjhNYABqPa5O3nI9fiDxcDL40K0sXIWHf0ZBsBZBDHlpF4dL5MvZCSFy1mY4sGqoAWKzKsxDpldOH87cgtafrYgBUvLbCzHIyGtaZCWvZC53yaqxXS3sIhXOwdk08mzuHgLw7u9CjS53uAZDZD";
@@ -36,25 +36,23 @@ const actions = {
   getResult: (sessionId, context, cb) => {
     console.log(sessionId);
     const recipientId = sessions[sessionId].fbId;
-    locationService.getLocation((locations, other) => {
-      if (recipientId) {
-        request({
-          url: "https://graph.facebook.com/v2.6/me/messages",
-          qs: { access_token: token },
-          method: "POST",
-          json: { recipient: { id: recipientId }, message: messenger.configHorizontalView(locations[0].child) }
-        }, err => {
-          if (err) {
-            console.log("An error occurred while forwarding the response to", recipientId, ":", err);
-          }
-          cb();
-        });
-      } else {
-        console.log("Oops! Couldn't find user for session:", sessionId);
+    if (recipientId) {
+      request({
+        url: "https://graph.facebook.com/v2.6/me/messages",
+        qs: { access_token: token },
+        method: "POST",
+        json: { recipient: { id: recipientId }, message: messenger.configHorizontalView(locationStore.get("locations")[0].child) }
+      }, err => {
+        if (err) {
+          console.log("An error occurred while forwarding the response to", recipientId, ":", err);
+        }
         cb();
-      }
-      cb(context);
-    });
+      });
+    } else {
+      console.log("Oops! Couldn't find user for session:", sessionId);
+      cb();
+    }
+    cb(context);
   }
 };
 
