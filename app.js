@@ -4,7 +4,7 @@ const favicon = require("serve-favicon");
 const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-
+const locationService = require("./services/locationService");
 const passport = require("passport");
 const Strategy = require("passport-facebook").Strategy;
 const FB = require("fb");
@@ -69,7 +69,9 @@ app.get("/auth/facebook",
 app.get("/auth/facebook/callback",
   passport.authenticate("facebook", { failureRedirect: "/auth/facebook" }),
   (req, res) => {
-    res.redirect("/users");
+    locationService.getLocation((locations, other) => {
+      res.send(locations);
+    });
   });
 // app.use("/facebook", facebook);
 
