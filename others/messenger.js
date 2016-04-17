@@ -33,7 +33,7 @@ function suggestSpots(sender, spots) {
         elements: [
           {
             title: "Fuji-Q Highland",
-            subtitle: "$$$",
+            subtitle: "$$$ | ★★★★☆",
             image_url: "http://www.japan-guide.com/g8/6918_01.jpg",
             buttons: [
               {
@@ -43,14 +43,14 @@ function suggestSpots(sender, spots) {
               },
               {
                 type: "postback",
-                title: "👍 Pick",
+                title: "Pick",
                 payload: "PAYLOAD_ITEM_1"
               }
             ]
           },
           {
             title: "Motor Sport Japan Festival 2016",
-            subtitle: "$$$",
+            subtitle: "$$$ | ★★★☆☆",
             image_url: "https://www.gotokyo.org/tc/kanko/koto/event/images/motor_fes_main_001.jpg",
             buttons: [
               {
@@ -60,14 +60,14 @@ function suggestSpots(sender, spots) {
               },
               {
                 type: "postback",
-                title: "👍 Pick",
+                title: "Pick",
                 payload: "PAYLOAD_ITEM_2"
               }
             ]
           },
           {
             title: "Disneyland, Tokyo",
-            subtitle: "$$$",
+            subtitle: "$$$ | ★★★★☆",
             image_url: "http://www.tokyo-top-guide.com/wp-content/uploads/2012/09/Tokyo-Disney-2.jpg",
             buttons: [
               {
@@ -77,7 +77,7 @@ function suggestSpots(sender, spots) {
               },
               {
                 type: "postback",
-                title: "👍 Pick",
+                title: "Pick",
                 payload: "PAYLOAD_ITEM_3"
               }
             ]
