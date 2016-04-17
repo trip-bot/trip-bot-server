@@ -17,8 +17,10 @@
     "node-wit": "^3.2.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.0",
+    "personality-insights-input": "^1.0.1",
     "request": "^2.71.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "watson-developer-cloud": "^1.4.1"
   },
   "devDependencies": {
     "eslint": "^2.8.0",
